@@ -32,14 +32,4 @@ module.exports = (robot) ->
           text += "#{movie.Poster}\n" if movie.Poster
           msg.send text
         else
-          msg.send "That's not a movie, yo."
-          
-      robot.emit 'slack.attachment',
-        message: "Message here"
-        content:
-            text: "Attachment text"
-            fallback: "Attachment fallback"
-        fields: [{
-            title: "Field title"
-            value: "Field value"
-          }]    
+          msg.send "Couldn't find it. Sorry."
