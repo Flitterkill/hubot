@@ -24,7 +24,7 @@ module.exports = (robot) ->
       .get() (err, res, body) ->
         movie = JSON.parse(body)
         if movie
-          text = "#{movie.Title} (#{movie.Year})\n"
+          text = "<strong>#{movie.Title}</strong> (#{movie.Year})\n"
           text += "IMDB: #{movie.imdbRating} MS: #{movie.Metascore}\n"
           text += "#{movie.Poster}\n" if movie.Poster
           text += "#{movie.Plot}"
