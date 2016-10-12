@@ -29,7 +29,6 @@ module.exports = (robot) ->
           text += "IMDB: #{movie.imdbRating} Metascore: #{movie.Metascore}\n"
           text += "#{movie.Plot}\n"
           text += "#{movie.Poster}\n" if movie.Poster
-          msg.send html  
           msg.send text
         else
           msg.send "That's not a movie, yo."
