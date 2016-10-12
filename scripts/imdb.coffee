@@ -21,6 +21,7 @@ module.exports = (robot) ->
     msg.http("http://omdbapi.com/")
       .query({
         t: query
+        plot: full
       })
       .get() (err, res, body) ->
         movie = JSON.parse(body)
