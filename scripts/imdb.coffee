@@ -15,6 +15,11 @@
 #   orderedlist
 
 module.exports = (robot) ->
+  
+      bold = (text) ->
+      "\x02" + text + "\u000f"
+  
+  
   robot.respond /(imdb|movie)( me)? (.*)/i, (msg) ->
     query = msg.match[3]
     msg.http("http://omdbapi.com/")
@@ -24,11 +29,10 @@ module.exports = (robot) ->
       .get() (err, res, body) ->
         movie = JSON.parse(body)
         if movie
-          text = "<strong>#{movie.Title}</strong> (#{movie.Year})\n"
-          text += "IMDB: #{movie.imdbRating} MS: #{movie.Metascore}\n"
+          text = "#{bold(movie.Title)} - #{movie.Year}\n"
+          text += "IMDB: #{movie.imdbRating} Metascore: #{movie.Metascore}\n"
+          text += "#{movie.Plot}\n"
           text += "#{movie.Poster}\n" if movie.Poster
-          text += "#{movie.Plot}"
-          
           msg.send text
         else
           msg.send "That's not a movie, yo."
