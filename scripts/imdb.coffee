@@ -25,10 +25,16 @@ module.exports = (robot) ->
       .get() (err, res, body) ->
         movie = JSON.parse(body)
         if movie
+          html = """
+                  <strong>
+                    #{movie.Title} - #{movie.Year}
+                  </strong>
+                """
           text = "#{movie.Title} - #{movie.Year}\n"
           text += "IMDB: #{movie.imdbRating} Metascore: #{movie.Metascore}\n"
           text += "#{movie.Plot}\n"
           text += "#{movie.Poster}\n" if movie.Poster
+          msg.send html  
           msg.send text
         else
           msg.send "That's not a movie, yo."
