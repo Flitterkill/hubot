@@ -16,12 +16,11 @@
 
 module.exports = (robot) ->
   
-  robot.respond /(imdb|movie)( me)? (.*+), (msg) ->
+  robot.respond /(imdb|movie)( me)? (.*)/i, (msg) ->
     query = msg.match[3]
     msg.http("http://omdbapi.com/")
       .query({
         t: query
-        plot: full
       })
       .get() (err, res, body) ->
         movie = JSON.parse(body)
@@ -32,4 +31,4 @@ module.exports = (robot) ->
           text += "#{movie.Poster}\n" if movie.Poster
           msg.send text
         else
-          msg.send "Couldn't find it. Sorry."
+          msg.send "I got nothing, sorry." 
